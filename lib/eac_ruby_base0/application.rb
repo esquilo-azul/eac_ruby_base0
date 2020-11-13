@@ -5,14 +5,22 @@ require 'eac_ruby_utils/core_ext'
 module EacRubyBase0
   class Application
     enable_simple_cache
-    common_constructor :gemspec_dir do
+    enable_listable
+    lists.add_symbol :option, :name
+
+    common_constructor :gemspec_dir, :options, default: [{}] do
       self.gemspec_dir = gemspec_dir.to_pathname
+      self.options = options.symbolize_keys.assert_valid_keys(self.class.lists.option.values).freeze
     end
 
     delegate :version, to: :self_gem
 
     def all_gems
       vendor_gems + [self_gem]
+    end
+
+    def name
+      options[OPTION_NAME] || self_gem.name
     end
 
     def vendor_dir
