@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'eac_ruby_utils/core_ext'
+require 'eac_ruby_utils/filesystem_cache'
 
 module EacRubyBase0
   class Application
@@ -29,6 +30,12 @@ module EacRubyBase0
       define_method "#{item}_dir" do
         (send(xdg_env_method_name) || home_dir.join(subpath)).join(name)
       end
+    end
+
+    def fs_cache
+      @fs_cache ||= ::EacRubyUtils::FilesystemCache.new(
+        cache_dir.join(::EacRubyUtils::FilesystemCache.name.parameterize)
+      )
     end
 
     def home_dir
