@@ -5,7 +5,7 @@ require 'eac_ruby_utils/fs/traversable'
 
 module EacRubyBase0
   module RunnerWith
-    module Confirmable
+    module Confirmation
       extend ::ActiveSupport::Concern
 
       included do
