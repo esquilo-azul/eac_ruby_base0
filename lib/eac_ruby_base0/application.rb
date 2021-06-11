@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'eac_cli/old_configs_bridge'
 require 'eac_ruby_base0/application_xdg'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
@@ -20,6 +21,11 @@ module EacRubyBase0
 
     def all_gems
       vendor_gems + [self_gem]
+    end
+
+    # @return [EacCli::OldConfigsBridge]
+    def build_config(path = nil)
+      ::EacCli::OldConfigsBridge.new(name, path.if_present({}) { |v| { storage_path: v } })
     end
 
     ::EacRubyBase0::ApplicationXdg::DIRECTORIES.each_key do |item|
