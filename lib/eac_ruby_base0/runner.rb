@@ -3,7 +3,7 @@
 require 'eac_cli/core_ext'
 require 'eac_cli/speaker'
 require 'eac_config/node'
-require 'eac_fs/cache'
+require 'eac_fs/contexts'
 require 'eac_ruby_utils/speaker'
 
 module EacRubyBase0
@@ -66,7 +66,7 @@ module EacRubyBase0
     # @return [Array<EacRubyUtils::Struct>]
     def available_contexts
       [
-        [:cache, ::EacFs::Cache.context, -> { application.self_fs_cache }],
+        [:cache, ::EacFs::Contexts.cache.context, -> { application.self_fs_cache }],
         [:config, ::EacConfig::Node.context, -> { runner_context.call(:application).build_config }],
         [:speaker, ::EacRubyUtils::Speaker.context, -> { build_speaker }]
       ].map { |row| available_context_row_to_struct(row) }

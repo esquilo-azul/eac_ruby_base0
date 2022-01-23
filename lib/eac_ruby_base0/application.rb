@@ -3,7 +3,7 @@
 require 'eac_cli/config'
 require 'eac_config/envvars_node'
 require 'eac_config/yaml_file_node'
-require 'eac_fs/cache'
+require 'eac_fs/storage_tree'
 require 'eac_ruby_base0/application_xdg'
 require 'eac_ruby_gems_utils/gem'
 require 'eac_ruby_utils/core_ext'
@@ -44,8 +44,8 @@ module EacRubyBase0
     end
 
     def self_fs_cache
-      @self_fs_cache ||= ::EacFs::Cache.new(
-        cache_dir.join(::EacFs::Cache.name.parameterize)
+      @self_fs_cache ||= ::EacFs::StorageTree.new(
+        cache_dir.join(::EacFs::StorageTree.name.parameterize)
       )
     end
 
