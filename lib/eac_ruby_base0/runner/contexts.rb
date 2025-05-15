@@ -14,7 +14,7 @@ module EacRubyBase0
           next if context.object.any?
 
           last_block = top_block
-          top_block = ::Proc.new { context.object.on(context.builder.call, &last_block) }
+          top_block = proc { context.object.on(context.builder.call, &last_block) }
         end
         top_block.call
       end
