@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_ruby_gem_support: ".rubocop.yml"
-Style/EnvHome:
-  Exclude:
-  - lib/eac_ruby_base0/application_xdg.rb
 Style/Proc:
   Exclude:
   - lib/eac_ruby_base0/runner/contexts.rb

@@ -8,7 +8,7 @@ module EacRubyBase0
     class << self
       # @return [Pathname]
       def user_home_dir_from_env
-        ENV.fetch('HOME').to_pathname
+        Dir.home.to_pathname
       end
     end
 
