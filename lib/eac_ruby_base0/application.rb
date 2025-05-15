@@ -45,7 +45,7 @@ module EacRubyBase0
     end
 
     ::EacFs::Contexts::TYPES.each do |type|
-      class_eval <<CODE, __FILE__, __LINE__ + 1
+      class_eval <<CODE, __FILE__, __LINE__ + 1 # rubocop:disable Style/DocumentDynamicEvalDefinition
   # @return [EacFs::StorageTree]
   def self_fs_#{type}
     @self_fs_#{type} ||= ::EacFs::StorageTree.new(#{type}_dir.join('eac_fs'))
